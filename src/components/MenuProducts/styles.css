@@ -1,0 +1,35 @@
+.menu_productos_container {
+  width: 260px;
+  height: calc(100vh - 108px);
+  margin-top: 108px;
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 108px;
+  overflow-y: scroll;
+}
+
+.menu_producto_category {
+  color: var(--colorGrayText);
+}
+
+.menu_productos_ul ul {
+  padding: 0px;
+}
+
+.menu_product_group_link {
+  display: flex;
+  align-items: center;
+}
+
+.menu_productos_ul ul li {
+  list-style: none;
+  margin: 7px 10px;
+  cursor: pointer;
+  color: var(--colorGrayText);
+  transition: .6s;
+}
+
+.menu_productos_ul ul li:hover {
+  color: var(--mainColor);
+}

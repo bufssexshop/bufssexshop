@@ -1,0 +1,155 @@
+.services_container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  padding: 0 100px;
+  font-family: 'Roboto', 'Lato', sans-serif;
+}
+
+.services_info {
+  padding-bottom: 50px;
+}
+
+.services_info_title {
+  color: var(--mainColor);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.services_info_subtitle {
+  color: #1E1E1E;
+  font-size: 32px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.services_info_description {
+  color: var(--colorGrayText);
+  font-size: 15px;
+  text-align: justify;
+}
+
+.services_info_description  span {
+  color: var(--mainColor);
+  font-weight: bold;
+}
+
+/* CARDS */
+.services_cards {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card_services {
+  width: 350px;
+  background: #F7F7F7;
+  border-radius: 10px;
+  padding: 40px 50px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.services_icon {
+  width: 100px;
+  height: 100px;
+  background-color: var(--mainColor);
+  border-radius: 100%;
+  margin-bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.MuiSvgIcon-root {
+  color: var(--colorWhite);
+}
+
+#shipping, #shopping, #transfer {
+  width: 65px;
+  height: 65px;
+}
+
+.services_card_title p{
+  margin-top: 35px;
+  font-size: 19px;
+  color: #1E1E1E;
+  font-weight: 500;
+  text-transform: capitalize;
+  letter-spacing: 0.5px;
+  margin-bottom: 30px;
+}
+
+.services_card_description {
+  color: var(--colorGrayText);
+  font-size: 14px;
+  line-height: 25px;
+  text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* DISEÑO RESPONSIVE MOBIL */
+
+.services_container_mobile {
+  padding: 0 30px;
+}
+
+.services_info_mobile .services_info_description {
+  font-size: 13px;
+}
+
+.services_cards_mobile {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card_services_mobile {
+  width: 400px;
+  margin: 15px 0px;
+  padding: 15px 30px;
+}
+
+.card_services_mobile .services_icon {
+  width: 60px;
+  height: 60px;
+}
+
+.card_services_mobile #shipping  {
+  width: 35px;
+  height: 35px;
+}
+
+.card_services_mobile #shopping {
+  width: 35px;
+  height: 35px;
+}
+
+.card_services_mobile #transfer {
+  width: 35px;
+  height: 35px;
+}
+
+.card_services_mobile .services_card_description {
+  line-height: 13px;
+  font-size: 13px;
+
+  text-align: justify;
+}
+
+.card_services_mobile .services_card_title p {
+  margin: 10px 0px;
+}

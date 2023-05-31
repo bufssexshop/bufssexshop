@@ -1,0 +1,136 @@
+.manage-products-container {
+  padding: 20px;
+}
+
+.search-products-without-results {
+  display: flex;
+  width: 100%;
+  height: 150px;
+  align-items: center;
+  justify-content: center;
+}
+
+.manage-search-products {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 5px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #ccc;
+}
+
+.search-for-name input {
+  width: 300px;
+}
+
+.search-for-code input, .search-for-name input {
+  padding: 5px;
+  outline: none;
+  color: var(--colorGrayText);
+}
+
+.manage-search-products button {
+  margin-left: 15px;
+  padding: 6px 20px;
+  background-color: var(--mainColor);
+  border: none;
+  color: #fff;
+  font-weight: bold;
+  transition: .6s;
+}
+
+.manage-search-products button:hover {
+  background-color: var(--colorHover);
+}
+
+.search-products-results {
+  width: 100%;
+  height: 300px;
+  overflow: scroll;
+  margin-top: 30px;
+}
+
+.search-products-results-button-delete-all-promotions {
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 5px 5px 3px #aaa;
+  background-color: var(--backgroundProfileMenu);
+  border-radius: 5px;
+  color: #fff;
+  font-weight: bold;
+  transition: .6s;
+  margin-right: 10px;
+}
+.search-products-results-button-delete-all-promotions:hover {
+  box-shadow: none;
+}
+
+.search-products-results table {
+  width: 100%;
+  text-align: left;
+  border: none;
+  border-spacing: 0;
+  overflow-x: auto;
+}
+
+.search-products-results th {
+  padding: 10px 0px;
+  background-color: var(--mainColor);
+  color: #fff;
+}
+
+.search-products-results td {
+  padding: 7px 0px;
+  border-bottom: 1px solid #ccc;
+  cursor: pointer;
+}
+
+
+.search-products-results tr {
+  transition: .6s;
+  font-size: 12px;
+}
+
+.search-products-results tr:hover {
+  background-color: #ddd;
+}
+
+.table-no-results {
+  text-align: center;
+  font-size: 16px;
+}
+
+
+/* modal editar promocion */
+.alert-dialog-edit-promotion {
+  margin-top: 15px;
+}
+
+.alert-dialog-promotion-price {
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.alert-dialog-promotion-price p {
+  margin: 0;
+  padding: 5px;
+  margin-left: 5px;
+}
+
+.alert-dialog-promotion-price input {
+  margin-left: 5px;
+  padding: 3px;
+}
+
+.alert-dialog-promotion-general {
+  display: flex;
+  margin-top: 15px;
+}
+
+.alert-dialog-promotion-general input {
+  margin-left: 15px;
+}

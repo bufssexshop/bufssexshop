@@ -1,0 +1,89 @@
+.card-container {
+  width: 200px;
+  height: 305px;
+  min-height: 295px;
+  max-height: 320px;
+  box-sizing: border-box;
+  background-color: var(--colorWhite);
+  margin: 10px;
+  transition: .6s;
+  position: relative;
+}
+
+.card-container a {
+  text-decoration: none;
+}
+
+.card-container:hover {
+  box-shadow: 0 -1px 28px rgba(0,0,0,0.10), 0 1px 10px rgba(0,0,0,0.10);
+}
+
+.card-image {
+  width: 100%;
+  height: 180px;
+  border-bottom: 1px solid #ccc;
+}
+
+.card-image img {
+  width: 80%;
+  display: block;
+  margin: auto;
+}
+
+.card-details {
+  padding: 10px 10px 0px 10px;
+  font-size: 14px;
+  color: var(--colorGrayText);
+}
+
+.card-product-name p {
+  text-decoration: none;
+  text-align: center;
+  margin-top: 0;
+}
+
+.card-prices {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 30px;
+}
+
+.prices-with-promotion {
+  font-size: 12px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.prices-with-promotion span {
+  text-decoration: line-through;
+}
+
+.card-button-add {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  right: 10px
+}
+
+.card-button-add button {
+  background-color: var(--mainColor);
+  outline: none;
+  border: none;
+  padding: 5px;
+  width: 100%;
+  color: var(--colorWhite);
+  font-weight: bold;
+  cursor: pointer;
+  transition: .6s;
+
+}
+
+.card-button-add .button-active:hover {
+  background-color: var(--colorHover);
+}
+
+.card-button-add .add-to-car-disabled {
+  background-color: #ddd;
+  color: #444;
+}

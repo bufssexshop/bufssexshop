@@ -1,0 +1,78 @@
+body {
+  --mainColor: #ff7bac;
+  --colorHover: #da5887;
+  --colorWhite: #ffffff;
+  --colorGrayText: #6a6a6a;
+  --colorGrayDark: #333333;
+  --inputError: #f34336;
+  --backgroundProfileMenu: #373650;
+  --backgroundProfileMenuHover: #2b2a4b;
+}
+
+.Formulario_Container{
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.titulos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  border-bottom: 1px solid gray;
+}
+
+.Formulario {
+  width: 800px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  background-color: #eee;
+  border-radius: 20px;
+}
+
+.Camp {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.Camp label {
+  width: 30%;
+}
+
+.Camp input {
+  width: 70%;
+}
+
+.DetallesEditor {
+  text-align: center;
+  font-weight: 700;
+  font-size: 25px;
+}
+
+.EditorTexto {
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+}
+
+.Btns {
+  display: flex;
+  justify-content: space-around;
+  border-top: 1px solid #ccc;
+  margin-top: 20px;
+  padding-top: 20px;
+}
+
+.Img-preview img{
+  width: 200px;
+  height: 200px;
+  margin-left: 30px;
+  border: 1px solid gray;
+}

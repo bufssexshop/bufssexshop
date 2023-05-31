@@ -1,0 +1,76 @@
+.Header_Logo_Container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* imagen de fondo */
+  background: url(
+    '../../multimedia/sexual-issues.jpg'
+  ) no-repeat 50% 50%;
+  background-size: cover;
+}
+
+.Header_Logo_Title p {
+  text-transform: uppercase;
+  color: var(--colorWhite);
+  font-family: 'Special Elite', 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 50px;
+}
+
+.Header_Logo_Search_Mobile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Header_Logo_Search_Mobile .search {
+  width: 300px;
+  margin-bottom: 15px;
+}
+
+.header__btn-3 {
+  background: var(--mainColor);
+  border: none;
+  color: var(--colorWhite);
+  padding: 14px 25px;
+  font-size: 15px;
+  font-weight: 500;
+  font-family: 'Roboto', sans-serif;
+  margin-left: 10px;
+  transition: .6s;
+  cursor: pointer;
+}
+
+.header__btn-3:hover {
+  transition: .6s;
+  background: var(--colorHover);
+}
+
+.search {
+  border: 1px solid var(--colorWhite);
+  padding: 15px;
+  width: 500px;
+  color: var(--colorWhite);
+  outline: none;
+  background-color: transparent;
+  transition: 1s;
+}
+
+.search:hover {
+  background: #ffffff10;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: 1s;
+}
+
+.search::placeholder {
+  color: var(--colorWhite);
+}
+
+.Header_Logo_Title_Mobile {
+  font-size: 40px;
+}

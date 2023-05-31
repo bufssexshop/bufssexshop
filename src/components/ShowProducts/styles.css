@@ -1,0 +1,35 @@
+.show-products-main {
+  display: flex;
+  flex-direction: column;
+}
+
+.show-products-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+	flex-flow: row wrap;
+  margin-top: 108px;
+  background-color: var(--colorWhite);
+  padding: 60px 0px 60px 10px;
+  align-items: start;
+}
+
+.no-results-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+}
+
+.img-no-results {
+  width: 45%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.MuiCircularProgress-colorPrimary {
+  color: var(--mainColor) !important;
+}

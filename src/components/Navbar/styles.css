@@ -1,0 +1,244 @@
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+nav {
+  z-index: 2;
+}
+
+nav.black_navbar {
+  position: fixed;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  border-bottom: 1px solid rgba(250,250,250,0.30);
+  box-shadow: 0 1px 10px rgb(0 0 0/10%);
+  font-family: 'Roboto', sans-serif;
+  background: #00000070;
+  transition: 1s;
+}
+
+nav.white_navbar {
+  position: fixed;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  border-bottom: 1px solid rgba(250,250,250,0.30);
+  box-shadow: 0 1px 10px rgb(0 0 0/30%);
+  font-family: 'Roboto', sans-serif;
+  background: var(--colorWhite);
+  transition: 1s;
+  top: 0;
+}
+
+nav .logo {
+  width: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+nav .logo img {
+  width: 90px;
+  transition: 1s;
+}
+
+.logo-navbar-mobile {
+  width: 70px;
+}
+
+
+nav .options ul {
+  list-style: none;
+  color: var(--colorWhite);
+  padding: 8px 16px;
+  text-align: center;
+  transition: 1s;
+}
+
+.Current_Page {
+  color: var(--mainColor);
+}
+
+.logo {
+  width: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+nav.white_navbar ul a {
+  color: var(--colorGrayText);
+}
+
+.black_navbar .options a.Current_Page, .white_navbar .options a.Current_Page {
+  color: var(--mainColor);
+}
+
+nav ul li {
+  display: inline-block;
+  padding: 20px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: var(--colorWhite);
+  font-size: 14px;
+  letter-spacing: 2px;
+  transition: .6s;
+  cursor: pointer;
+}
+
+nav ul li a:hover {
+  color: var(--mainColor);
+  transition: .6s;
+}
+
+.buttons_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+ul.buttons {
+  padding-left: 0;
+  display: flex;
+  align-items: center;
+}
+
+.header__btn-2 {
+  background: var(--mainColor);
+  border: none;
+  color: var(--colorWhite);
+  padding: 6px 20px;
+  font-size: 13px;
+  font-family: 'Roboto', sans-serif;
+  transition: .6s;
+}
+
+.header__btn-2:hover {
+  transition: .6s;
+  background: var(--colorHover);
+}
+
+.header__btn-2 {
+  cursor: pointer;
+}
+
+.menu_bar {
+  cursor: pointer;
+}
+
+
+
+/* MODAL LOGIN STYLES */
+.form-login {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-group-email {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #ddd;
+  margin: 10px 0;
+}
+
+.form-group-email input {
+  border: none;
+  font-size: 14px;
+  outline: none;
+  font-weight: 700;
+}
+
+.view-password {
+  cursor: pointer;
+}
+
+.actions_btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+.actions_btn button {
+  background: var(--mainColor);
+  border: none;
+  color: var(--colorWhite);
+  padding: 14px 25px;
+  font-size: 15px;
+  font-weight: 500;
+  font-family: 'Roboto', sans-serif;
+  margin-left: 10px;
+  transition: .6s;
+  cursor: pointer;
+}
+
+.actions_btn button:hover {
+  background: var(--colorHover);
+}
+
+.form_helpers {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Roboto', 'Lato', sans-serif;
+  margin-top: 10px;
+}
+
+.form_helpers p {
+  font-size: 12px;
+  margin: 3px 0;
+}
+
+.form_helpers span {
+  font-size: 12px;
+  font-weight: bold;
+  color: var(--inputError);
+}
+
+
+
+/* DRAWER MENU */
+.MuiDrawer-paper {
+  width: 200px;
+}
+
+.drawer_responsive ul  {
+  list-style: none;
+  padding-left: 15px;
+}
+
+.drawer_responsive ul li {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.drawer_responsive ul li .drawer_icon {
+  color: var(--mainColor);
+  margin-right: 15px;
+}
+
+.drawer_responsive ul li a {
+  text-decoration: none;
+  color: var(--colorGrayText);
+  transition: .6s;
+  font-weight: bold;
+}
+
+.drawer_responsive ul li a.Current_Page, .drawer_responsive ul li a:hover {
+  color: var(--mainColor);
+  transition: .6s;
+}

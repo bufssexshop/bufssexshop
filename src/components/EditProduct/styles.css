@@ -1,0 +1,152 @@
+.edit_product_container {
+ width: 100%;
+ box-sizing: border-box;
+ font-family: 'Roboto', 'Lato', sans-serif;
+}
+
+
+
+
+
+
+/* TITLE */
+.new_product_title {
+ display: flex;
+ justify-content: center;
+}
+
+.new_product_title p {
+ margin: 0;
+ font-size: 20px;
+ letter-spacing: 2px;
+}
+
+
+
+
+
+
+/* FIRST LINE */
+.new_product_first_line, .new_product_second_line {
+ display: flex;
+ align-items: center;
+ margin-top: 30px;
+}
+
+.new_product_first_line #nombre {
+ width: 300px;
+}
+
+.new_product_first_line input {
+ width: 200px;
+ outline: none;
+ padding: 5px 0;
+ margin-right: 20px;
+ border: 1px solid var(--colorGrayText);
+ padding-left: 10px;
+}
+
+.new_product_first_line input::placeholder {
+ padding-left: 20px;
+ font-family: 'Roboto', 'Lato', sans-serif;
+}
+
+.new_product_first_line select {
+ width: 50px;
+ margin-left: 20px;
+ padding: 5px 0;
+}
+
+.new_product_first_line label {
+ margin-top: 5px;
+}
+
+.new_product_second_line label {
+ margin-top: 5px;
+}
+
+.new_product_second_line select {
+ width: 170px;
+ outline: none;
+ padding: 5px 0;
+ margin-right: 30px;
+ margin-left: 10px;
+ font-family: 'Roboto', 'Lato', sans-serif;
+ border: 1px solid var(--colorGrayText);
+ background: var(--colorWhite);
+ color: var(--colorGrayText);
+}
+
+.new_product_editor {
+ margin-top: 30px;
+ border-bottom: 1px solid #ccc;
+ border-left: 1px solid #ccc;
+ border-right: 1px solid #ccc;
+}
+
+.new_product_image_container {
+ display: flex;
+ justify-content: center;
+ margin-top: 30px;
+}
+
+.edit-product-images-group {
+ display: flex;
+ justify-content: space-around;
+}
+
+.new_product_img_preview {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+}
+
+.new_product_img_preview img{
+ width: 200px;
+ height: 200px;
+ border: 1px solid gray;
+}
+
+
+
+
+
+
+
+
+
+/* BUTTONS */
+.new_product_buttons {
+ display: flex;
+ justify-content: space-around;
+ margin: 20px 0px;
+ font-family: 'Roboto', 'Lato', sans-serif;
+}
+
+.new_product_clear_form {
+ padding: 10px 15px;
+ outline: none;
+ border: 1px solid var(--colorGrayText);
+ cursor: pointer;
+ font-weight: bold;
+ transition: .6s;
+ background-color: transparent;
+}
+
+.new_product_clear_form:hover {
+ background-color: #ddd;
+}
+
+.new_product_submit_form {
+ background-color: var(--mainColor);
+ border: none;
+ color: var(--colorWhite);
+ padding: 10px 15px;
+ font-weight: bold;
+ cursor: pointer;
+ transition: .6s;
+}
+
+.new_product_submit_form:hover {
+ background-color: var(--colorHover);
+}

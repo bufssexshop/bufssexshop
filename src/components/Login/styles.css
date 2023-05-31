@@ -1,0 +1,9 @@
+.header__btn-1 {
+  background: transparent;
+  color: var(--colorWhite);
+  padding: 6px 20px;
+  border: 2px solid var(--colorWhite);
+  font-size: 13px;
+  font-family: 'Roboto', sans-serif;
+  transition: .6s;
+}

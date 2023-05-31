@@ -1,0 +1,7 @@
+.profile_section_container {
+  width: calc(100% - 300px);
+  max-height: calc(100vh - 108px);
+  box-sizing: border-box;
+  margin-top: 108px;
+  overflow-y: scroll;
+}
