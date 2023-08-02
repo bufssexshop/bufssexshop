@@ -37,12 +37,9 @@ export async function getProducts(dispatch, subcategory) {
   dispatch({ type: PRODUCT_ERROR, payload: '' });
   try {
     const { data } = await axios({
-      method: 'POST',
+      method: 'GET',
       baseURL: process.env.REACT_APP_SERVER_URL,
-      url: '/productos/getProducts',
-      data: {
-        subcategoria: subcategory,
-      },
+      url: `/productos/getProducts/${subcategory}`,
     })
     dispatch({ type: PRODUCTS_SUCCESS, payload: data})
   } catch (error) {
