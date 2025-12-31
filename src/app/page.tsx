@@ -5,6 +5,7 @@ import { productService } from '@/services/product.service';
 import { ProductCard } from '@/components/shop/ProductCard';
 
 const HERO_IMG = "https://images.pexels.com/photos/8535751/pexels-photo-8535751.jpeg";
+const SEDUCCION_IMG = "https://images.pexels.com/photos/11104885/pexels-photo-11104885.jpeg";
 const TECH_IMG = "https://images.pexels.com/photos/11104883/pexels-photo-11104883.jpeg";
 
 export default async function HomePage() {
