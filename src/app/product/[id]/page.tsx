@@ -17,7 +17,7 @@ export default function ProductDetailPage() {
 
   const [product, setProduct] = useState<Product | null>(productCache.get(id) || null);
   const [loading, setLoading] = useState(!productCache.has(id));
-  const [error, setError] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (productCache.has(id)) {
@@ -27,19 +27,46 @@ export default function ProductDetailPage() {
     const fetchProduct = async () => {
       try {
         setLoading(true);
-        const API_URL = process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, '') || 'http://localhost:8000';
-        const res = await fetch(`${API_URL}/products/${id}`);
+        setError(null);
 
-        if (!res.ok) throw new Error('Producto no encontrado');
+        const API_URL = process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, '');
+
+        if (!API_URL) {
+          throw new Error('API_URL no configurada');
+        }
+
+        console.log('Fetching product:', id, 'from:', API_URL);
+
+        const res = await fetch(`${API_URL}/products/${id}`, {
+          cache: 'no-store',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+
+        console.log('Response status:', res.status);
+
+        if (!res.ok) {
+          if (res.status === 404) {
+            throw new Error('Producto no encontrado');
+          }
+          throw new Error(`Error del servidor: ${res.status}`);
+        }
 
         const data = await res.json();
-        const productData = data.product;
+        console.log('Data received:', data);
+
+        const productData = data.product || data;
+
+        if (!productData) {
+          throw new Error('No se recibió información del producto');
+        }
 
         productCache.set(id, productData);
         setProduct(productData);
       } catch (err) {
-        console.error('Error:', err);
-        setError(true);
+        console.error('Error fetching product:', err);
+        setError(err instanceof Error ? err.message : 'Error desconocido');
       } finally {
         setLoading(false);
       }
@@ -50,16 +77,30 @@ export default function ProductDetailPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex flex-col items-center justify-center gap-4">
         <div className="w-12 h-12 border-4 border-pink-600 border-t-transparent rounded-full animate-spin"></div>
+        <p className="text-gray-400 text-sm">Cargando producto...</p>
       </div>
     );
   }
 
   if (error || !product) {
     return (
-      <div className="text-white text-center py-20">
-        Producto no encontrado
+      <div className="min-h-screen flex flex-col items-center justify-center gap-4 px-4">
+        <div className="text-center max-w-md">
+          <h1 className="text-white font-black italic text-4xl mb-4">
+            Producto no encontrado
+          </h1>
+          <p className="text-gray-400 mb-6">
+            {error || 'No pudimos encontrar este producto'}
+          </p>
+          <Link
+            href="/products"
+            className="inline-block bg-brand-pink text-white px-8 py-3 rounded-full text-sm font-black uppercase tracking-widest hover:bg-pink-600 transition-all"
+          >
+            Volver al catálogo
+          </Link>
+        </div>
       </div>
     );
   }
