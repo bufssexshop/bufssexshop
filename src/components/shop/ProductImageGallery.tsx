@@ -28,9 +28,9 @@ export const ProductImageGallery = ({ images }: { images: string[] }) => {
         <Image
           src={mainImage}
           alt="Product view"
-          unoptimized
           fill
           priority
+          quality={95}
           className={cn(
             "object-contain transition-transform duration-200 pointer-events-none",
             isZooming ? "scale-[2]" : "scale-100"
@@ -57,7 +57,6 @@ export const ProductImageGallery = ({ images }: { images: string[] }) => {
               alt={`Thumb ${idx}`}
               fill
               className="object-cover"
-              unoptimized
             />
           </button>
         ))}

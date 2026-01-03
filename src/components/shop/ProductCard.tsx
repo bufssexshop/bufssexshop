@@ -6,6 +6,7 @@ import { ShoppingCart, Eye, Heart, ShoppingBag } from 'lucide-react';
 import { useCartStore } from '@/store/useCartStore';
 import { Product } from '@/types/product';
 import { toast } from 'sonner';
+import Image from 'next/image';
 
 interface Props {
   product: Product;
@@ -41,12 +42,14 @@ export const ProductCard = ({ product }: Props) => {
       className="group relative flex flex-col w-full bg-white rounded-4xl p-4 border border-gray-100 shadow-sm hover:shadow-2xl hover:shadow-pink-100/50 transition-all duration-500"
     >
       <Link href={`/product/${product._id}`} prefetch={false} className="relative aspect-square w-full overflow-hidden rounded-3xl bg-gray-50 flex items-center justify-center">
-        <img
+        <Image
           src={product.image}
           alt={product.name}
-          className="h-full w-full object-contain mix-blend-multiply group-hover:scale-110 transition-transform duration-700 ease-out p-4"
+          width={500}
+          height={500}
+          quality={85}
+          className="h-full w-full object-contain group-hover:scale-110 transition-transform duration-700 ease-out p-4"
         />
-
         {/* Overlays Rápidos */}
         <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
