@@ -29,3 +29,11 @@ export interface ProductFilters {
   page?: number;
   limit?: number;
 }
+
+export interface PaginatedProducts {
+  products: Product[];
+  totalProducts: number;
+  totalPages: number;
+  page: number;
+  hasNextPage: boolean;
+}

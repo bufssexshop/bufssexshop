@@ -40,7 +40,7 @@ export const ProductCard = ({ product }: Props) => {
       transition={{ duration: 0.4, ease: "easeOut"}}
       className="group relative flex flex-col w-full bg-white rounded-4xl p-4 border border-gray-100 shadow-sm hover:shadow-2xl hover:shadow-pink-100/50 transition-all duration-500"
     >
-      <Link href={`/product/${product._id}`} className="relative aspect-square w-full overflow-hidden rounded-3xl bg-gray-50 flex items-center justify-center">
+      <Link href={`/product/${product._id}`} prefetch={false} className="relative aspect-square w-full overflow-hidden rounded-3xl bg-gray-50 flex items-center justify-center">
         <img
           src={product.image}
           alt={product.name}
@@ -87,7 +87,7 @@ export const ProductCard = ({ product }: Props) => {
           </span>
         </div>
 
-        <Link href={`/product/${product._id}`}>
+        <Link href={`/product/${product._id}`} prefetch={false}>
           <h3 className="text-xs md:text-lg font-black text-gray-900 uppercase leading-tight mb-2 line-clamp-2 h-10">
             {product.name}
           </h3>

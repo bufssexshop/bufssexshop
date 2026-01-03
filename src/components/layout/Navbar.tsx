@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, Suspense } from 'react';
 import { useAuthStore } from '@/store/useAuthStore';
 import { usePathname, useSearchParams, useRouter } from 'next/navigation';
 import { AuthModal } from '@/components/shop/AuthModal';
@@ -14,10 +14,53 @@ import Image from 'next/image';
 
 const emptyArray: CartItem[] = [];
 
-export const Navbar = () => {
+// Componente separado que usa useSearchParams
+function SearchBar() {
   const router = useRouter();
-  const pathname = usePathname();
   const searchParams = useSearchParams();
+  const currentSearch = searchParams.get('search') || '';
+
+  const [searchTerm, setSearchTerm] = useState(currentSearch);
+  const [prevSearch, setPrevSearch] = useState(currentSearch);
+
+  if (currentSearch !== prevSearch) {
+    setPrevSearch(currentSearch);
+    setSearchTerm(currentSearch);
+  }
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    const params = new URLSearchParams(searchParams.toString());
+
+    if (searchTerm.trim()) {
+      params.set('search', searchTerm.trim());
+    } else {
+      params.delete('search');
+    }
+
+    params.set('page', '1');
+    router.push(`/products?${params.toString()}`);
+  };
+
+  return (
+    <form onSubmit={handleSearch} className="absolute right-0 top-0 z-10">
+      <input
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        placeholder="Buscar..."
+        className="bg-white/5 border border-white/10 rounded-full pl-4 pr-10 py-2 text-sm text-white
+                  placeholder:text-gray-500 outline-none transition-all duration-300
+                  w-40 focus:w-80 focus:bg-brand-dark focus:border-brand-pink focus:shadow-[0_0_20px_rgba(255,45,146,0.1)]"
+      />
+      <button type="submit" className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-brand-pink transition-colors">
+        <Search className="h-4 w-4" />
+      </button>
+    </form>
+  );
+}
+
+export const Navbar = () => {
+  const pathname = usePathname();
   const { user, isAuthenticated, logout } = useAuthStore();
 
   const cartItems = useSyncExternalStore(
@@ -29,35 +72,10 @@ export const Navbar = () => {
   const openCart = useUiStore((state) => state.openCart);
   const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
-  const currentSearch = searchParams.get('search') || '';
-
   const isActive = (path: string) => pathname === path;
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useState(currentSearch);
-  const [prevSearch, setPrevSearch] = useState(currentSearch);
-
-  if (currentSearch !== prevSearch) {
-    setPrevSearch(currentSearch);
-    setSearchTerm(currentSearch);
-  }
-
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    const params = new URLSearchParams(searchParams.toString());
-
-    if (searchTerm.trim()) {
-      params.set('search', searchTerm.trim());
-    } else {
-      params.delete('search');
-    }
-
-    params.set('page', '1');
-
-    router.push(`/products?${params.toString()}`);
-  };
 
   return (
     <>
@@ -66,9 +84,6 @@ export const Navbar = () => {
 
           {/* Logo Branding */}
           <Link href="/" className="flex items-center gap-3 group">
-            {/* <div className="h-12 w-12 overflow-hidden rounded-full border-2 border-brand-pink shadow-[0_0_15px_rgba(255,45,146,0.2)] transition-transform group-hover:scale-105">
-              <div className="bg-brand-pink/10 w-full h-full flex items-center justify-center text-[10px] font-black text-brand-pink">BUF&apos;S</div>
-            </div> */}
             <div className="h-12 w-12 overflow-hidden rounded-full transition-transform group-hover:scale-110 relative">
               <Image
                 src="/logo.png"
@@ -112,19 +127,18 @@ export const Navbar = () => {
           {/* Actions */}
           <div className="flex items-center gap-2 sm:gap-4">
             <div className="hidden sm:block w-40 h-10 relative">
-              <form onSubmit={handleSearch} className="absolute right-0 top-0 z-10">
-                <input
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  placeholder="Buscar..."
-                  className="bg-white/5 border border-white/10 rounded-full pl-4 pr-10 py-2 text-sm text-white
-                            placeholder:text-gray-500 outline-none transition-all duration-300
-                            w-40 focus:w-80 focus:bg-brand-dark focus:border-brand-pink focus:shadow-[0_0_20px_rgba(255,45,146,0.1)]"
-                />
-                <button type="submit" className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-brand-pink transition-colors">
-                  <Search className="h-4 w-4" />
-                </button>
-              </form>
+              {/* Suspense */}
+              <Suspense fallback={
+                <div className="absolute right-0 top-0 z-10">
+                  <input
+                    disabled
+                    placeholder="Buscar..."
+                    className="bg-white/5 border border-white/10 rounded-full pl-4 pr-10 py-2 text-sm text-gray-500 w-40"
+                  />
+                </div>
+              }>
+                <SearchBar />
+              </Suspense>
             </div>
 
             <button

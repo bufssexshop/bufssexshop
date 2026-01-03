@@ -1,7 +1,7 @@
-// next.config.ts (o .mjs)
-import type { NextConfig } from "next";
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: false,
 
-const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
@@ -9,8 +9,28 @@ const nextConfig: NextConfig = {
         hostname: 'res.cloudinary.com',
         pathname: '/**',
       },
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '8000',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: '**',
+      }
     ],
   },
+  experimental: {
+    optimizePackageImports: ['lucide-react'],
+  },
+  typescript: {
+    ignoreBuildErrors: false,
+  },
+
+  eslint: {
+    ignoreDuringBuilds: false,
+  }
 };
 
-export default nextConfig;
+module.exports = nextConfig;

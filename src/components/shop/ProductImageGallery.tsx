@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
-import { motion, AnimatePresence } from 'framer-motion';
 
 export const ProductImageGallery = ({ images }: { images: string[] }) => {
   const [mainImage, setMainImage] = useState(images[0]);
@@ -29,6 +28,7 @@ export const ProductImageGallery = ({ images }: { images: string[] }) => {
         <Image
           src={mainImage}
           alt="Product view"
+          unoptimized
           fill
           priority
           className={cn(
@@ -57,6 +57,7 @@ export const ProductImageGallery = ({ images }: { images: string[] }) => {
               alt={`Thumb ${idx}`}
               fill
               className="object-cover"
+              unoptimized
             />
           </button>
         ))}

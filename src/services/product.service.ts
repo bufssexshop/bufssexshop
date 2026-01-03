@@ -1,4 +1,3 @@
-import api from '@/lib/axios';
 import { Product, ProductFilters } from '@/types/product';
 
 export interface PaginatedProducts {
@@ -9,15 +8,26 @@ export interface PaginatedProducts {
   hasNextPage: boolean;
 }
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, '') || 'http://localhost:8000';
+
 export const productService = {
   getAll: async (page = 1): Promise<PaginatedProducts> => {
-    const response = await api.get(`/products/all?page=${page}&limit=12`);
-    return response.data; // Viene como { products: [], totalProducts: ... }
+    const res = await fetch(`${API_URL}/products/all?page=${page}&limit=12`, {
+      next: { revalidate: 300 }
+    });
+    if (!res.ok) throw new Error('Error al obtener productos');
+    return res.json();
   },
 
   async getProductById(id: string): Promise<Product> {
     try {
-      const { data } = await api.get<{ success: boolean; product: Product }>(`products/${id}`);
+      const res = await fetch(`${API_URL}/products/${id}`, {
+        next: { revalidate: 3600 }
+      });
+
+      if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+
+      const data = await res.json();
 
       if (!data.product) {
         throw new Error("El backend no devolvió el objeto 'product'");
@@ -31,16 +41,22 @@ export const productService = {
   },
 
   getByCategory: async (category: string) => {
-    const response = await api.get(`/products/category/${category}`);
-    return response.data;
+    const res = await fetch(`${API_URL}/products/category/${category}`, {
+      next: { revalidate: 300 }
+    });
+    if (!res.ok) throw new Error('Error por categoría');
+    return res.json();
   },
 
   getBySubcategory: async (category: string, subcategory: string) => {
-    const response = await api.get(`/products/category/${category}/${subcategory}`);
-    return response.data;
+    const res = await fetch(`${API_URL}/products/category/${category}/${subcategory}`, {
+      next: { revalidate: 300 }
+    });
+    if (!res.ok) throw new Error('Error por subcategoría');
+    return res.json();
   },
 
-  getFiltered: async (filters: ProductFilters) => {
+  getFiltered: async (filters: ProductFilters): Promise<PaginatedProducts> => {
     const cleanFilters = Object.entries(filters).reduce((acc, [key, value]) => {
       if (value !== undefined && value !== null && value !== '') {
         acc[key] = String(value);
@@ -49,7 +65,12 @@ export const productService = {
     }, {} as Record<string, string>);
 
     const query = new URLSearchParams(cleanFilters).toString();
-    const response = await api.get(`/products/filter?${query}`);
-    return response.data;
+
+    const res = await fetch(`${API_URL}/products/filter?${query}`, {
+      next: { revalidate: 300 }
+    });
+
+    if (!res.ok) throw new Error('Error en el filtrado');
+    return res.json();
   }
 };

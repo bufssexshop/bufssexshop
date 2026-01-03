@@ -1,4 +1,3 @@
-// src/components/shop/Pagination.tsx
 "use client";
 
 import { useParams, useRouter, useSearchParams } from 'next/navigation';
