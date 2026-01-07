@@ -2,15 +2,27 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ShoppingCart, Eye, Heart, ShoppingBag } from 'lucide-react';
+import { ShoppingCart, Eye, ShoppingBag } from 'lucide-react';
 import { useCartStore } from '@/store/useCartStore';
 import { Product } from '@/types/product';
 import { toast } from 'sonner';
 import Image from 'next/image';
+import { WishlistButton } from './WishlistButton';
 
 interface Props {
   product: Product;
 }
+
+const isNewProduct = (createdAt: string | Date | undefined): boolean => {
+  if (!createdAt) return false;
+
+  const productDate = new Date(createdAt);
+  const now = new Date();
+  const diffInMs = now.getTime() - productDate.getTime();
+  const diffInDays = diffInMs / (1000 * 60 * 60 * 24);
+
+  return diffInDays <= 15;
+};
 
 export const ProductCard = ({ product }: Props) => {
   const addItem = useCartStore((state) => state.addItem);
@@ -39,7 +51,7 @@ export const ProductCard = ({ product }: Props) => {
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, ease: "easeOut"}}
-      className="group relative flex flex-col w-full bg-white rounded-4xl p-4 border border-gray-100 shadow-sm hover:shadow-2xl hover:shadow-pink-100/50 transition-all duration-500"
+      className="group relative flex flex-col w-full bg-white rounded-2xl md:rounded-3xl py-2 px-1 md:p-4 border border-gray-100 shadow-sm hover:shadow-2xl hover:shadow-pink-100/50 transition-all duration-500"
     >
       <Link href={`/product/${product._id}`} prefetch={false} className="relative aspect-square w-full overflow-hidden rounded-3xl bg-gray-50 flex items-center justify-center">
         <Image
@@ -60,8 +72,8 @@ export const ProductCard = ({ product }: Props) => {
               Oferta
             </span>
           )}
-          {product.available && (
-            <span className="bg-white/90 backdrop-blur-md text-gray-900 text-[10px] font-bold px-3 py-1 rounded-full uppercase border border-gray-100 shadow-sm">
+          {isNewProduct(product.createdAt) && (
+            <span className="bg-pink-600 backdrop-blur-md text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase shadow-sm">
               Nuevo
             </span>
           )}
@@ -72,9 +84,9 @@ export const ProductCard = ({ product }: Props) => {
           <button className="p-3 bg-white text-gray-900 rounded-full shadow-xl hover:bg-pink-500 hover:text-white transition-colors">
             <Eye className="h-5 w-5" />
           </button>
-          <button className="p-3 bg-white text-gray-900 rounded-full shadow-xl hover:bg-pink-500 hover:text-white transition-colors">
-            <Heart className="h-5 w-5" />
-          </button>
+          <div className="bg-white rounded-full shadow-xl">
+            <WishlistButton product={product} size="md" />
+          </div>
         </div>
       </Link>
 
@@ -96,7 +108,7 @@ export const ProductCard = ({ product }: Props) => {
           </h3>
         </Link>
 
-        <div className="mt-auto pt-4 flex items-end justify-between">
+        <div className="mt-auto pt-1 md:pt-4 flex items-end justify-between">
           <div className="flex flex-col">
             {product.promotion && (
               <span className="text-xs text-gray-400 line-through font-medium">
@@ -109,10 +121,10 @@ export const ProductCard = ({ product }: Props) => {
           </div>
 
           <button
-            className="flex items-center justify-center h-9 w-9 md:h-12 md:w-12 bg-gray-900 text-white rounded-xl md:rounded-2xl hover:bg-pink-500 transition-all duration-700 shadow-lg shadow-gray-200 active:scale-90 group-hover:rotate-[360deg]"
+            className="flex items-center justify-center h-7 w-7 md:h-10 md:w-10 bg-gray-900 text-white rounded-xl md:rounded-2xl hover:bg-pink-500 transition-all duration-700 shadow-lg shadow-gray-200 active:scale-90 group-hover:rotate-[360deg]"
             onClick={handleAddToCart}
           >
-            <ShoppingCart className="h-4 w-4 md:h-5 md:w-5" />
+            <ShoppingCart className="h-3.5 w-3.5 md:h-5 md:w-5" />
           </button>
         </div>
       </div>

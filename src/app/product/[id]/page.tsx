@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import { Product } from '@/types/product';
+import { useRecentlyViewed } from '@/hooks/useRecentlyViewed';
 import { ProductImageGallery } from '@/components/shop/ProductImageGallery';
 import { ProductActions } from '@/components/shop/ProductActions';
 import { Truck, EyeOff, MessageCircle } from 'lucide-react';
@@ -14,6 +15,7 @@ const productCache = new Map<string, Product>();
 export default function ProductDetailPage() {
   const params = useParams();
   const id = params.id as string;
+  const { addProduct: addToRecentlyViewed } = useRecentlyViewed();
 
   const [product, setProduct] = useState<Product | null>(productCache.get(id) || null);
   const [loading, setLoading] = useState(!productCache.has(id));
@@ -64,6 +66,7 @@ export default function ProductDetailPage() {
 
         productCache.set(id, productData);
         setProduct(productData);
+        addToRecentlyViewed(productData);
       } catch (err) {
         console.error('Error fetching product:', err);
         setError(err instanceof Error ? err.message : 'Error desconocido');
@@ -73,7 +76,7 @@ export default function ProductDetailPage() {
     };
 
     fetchProduct();
-  }, [id]);
+  }, [id, addToRecentlyViewed]);
 
   if (loading) {
     return (

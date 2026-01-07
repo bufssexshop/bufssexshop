@@ -1,12 +1,12 @@
 import Link from 'next/link';
 import { Product } from '@/types/product';
-import { ShieldCheck, Sparkles, Truck, Zap } from 'lucide-react';
+import { ShieldCheck, Sparkles, Truck, Zap, Droplets } from 'lucide-react';
+import { RecentlyViewedSection } from '@/components/shop/RecentlyViewedSection';
 import { productService } from '@/services/product.service';
 import { ProductCard } from '@/components/shop/ProductCard';
+import Image from 'next/image';
 
 const HERO_IMG = "https://images.pexels.com/photos/8535751/pexels-photo-8535751.jpeg";
-const SEDUCCION_IMG = "https://images.pexels.com/photos/11104885/pexels-photo-11104885.jpeg";
-const TECH_IMG = "https://images.pexels.com/photos/11104883/pexels-photo-11104883.jpeg";
 
 export default async function HomePage() {
   const { products } = await productService.getFiltered({ page: 1 });
@@ -17,10 +17,14 @@ export default async function HomePage() {
       {/* HERO SECTION */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img
+          <Image
             src={HERO_IMG}
-            className="w-full h-full object-cover opacity-40"
             alt="BUF'S Hero"
+            fill
+            priority
+            quality={80}
+            sizes="100vw"
+            className="object-cover opacity-40"
           />
           <div className="absolute inset-0 bg-linear-to-b from-transparent via-black/20 to-black" />
         </div>
@@ -35,22 +39,83 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* CATEGORÍAS EDITORIALES */}
-      <section className="py-10 px-4 container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-        <Link href="/products/lenceria" className="group relative h-175 overflow-hidden rounded-[3rem]">
-          <img src={SEDUCCION_IMG} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000" />
-          <div className="absolute inset-0 bg-black/40 p-12 flex flex-col justify-end">
-            <h2 className="text-5xl font-black text-white italic uppercase">Seducción</h2>
-          </div>
-        </Link>
+      {/* CATEGORÍAS CON GRADIENTES - OPTIMIZADO MOBILE */}
+      <section className="py-8 md:py-20 px-4 container mx-auto">
+        <div className="mb-6 md:mb-10">
+          <h2 className="text-3xl md:text-4xl font-black text-white italic uppercase tracking-tighter">
+            Explora por <span className="text-brand-pink">Categoría</span>
+          </h2>
+        </div>
 
-        <Link href="/products/juguetes" className="group relative h-175 overflow-hidden rounded-[3rem]">
-          <img src={TECH_IMG} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000" />
-          <div className="absolute inset-0 bg-black/40 p-12 flex flex-col justify-end">
-            <h2 className="text-5xl font-black text-white italic uppercase">Vibraciones</h2>
-          </div>
-        </Link>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+
+          {/* Lencería */}
+          <Link
+            href="/products/lenceria"
+            className="group relative h-54 md:h-87.5 overflow-hidden rounded-2xl md:rounded-[2.5rem] bg-linear-to-br from-pink-600/20 via-purple-600/20 to-pink-800/20 border border-white/10 hover:border-brand-pink/50 transition-all duration-500 active:scale-[0.98]"
+          >
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(255,45,146,0.15),transparent_70%)]" />
+            <div className="relative h-full p-5 md:p-10 flex flex-col justify-between">
+              <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-brand-pink/20 flex items-center justify-center border border-brand-pink/30 group-hover:scale-110 transition-transform">
+                <Sparkles className="w-6 h-6 md:w-8 md:h-8 text-brand-pink" />
+              </div>
+              <div>
+                <h3 className="text-2xl md:text-4xl font-black text-white italic uppercase mb-1 md:mb-2">
+                  Lencería
+                </h3>
+                <p className="text-gray-400 text-xs md:text-sm">
+                  Seduce con elegancia
+                </p>
+              </div>
+            </div>
+          </Link>
+
+          {/* Juguetes */}
+          <Link
+            href="/products/juguetes"
+            className="group relative h-45 md:h-87.5 overflow-hidden rounded-2xl md:rounded-[2.5rem] bg-linear-to-br from-purple-600/20 via-pink-600/20 to-purple-800/20 border border-white/10 hover:border-purple-500/50 transition-all duration-500 active:scale-[0.98]"
+          >
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(147,51,234,0.15),transparent_70%)]" />
+            <div className="relative h-full p-5 md:p-10 flex flex-col justify-between">
+              <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-purple-500/20 flex items-center justify-center border border-purple-500/30 group-hover:scale-110 transition-transform">
+                <Zap className="w-6 h-6 md:w-8 md:h-8 text-purple-400" />
+              </div>
+              <div>
+                <h3 className="text-2xl md:text-4xl font-black text-white italic uppercase mb-1 md:mb-2">
+                  Juguetes
+                </h3>
+                <p className="text-gray-400 text-xs md:text-sm">
+                  Tecnología del placer
+                </p>
+              </div>
+            </div>
+          </Link>
+
+          {/* Lubricantes */}
+          <Link
+            href="/products/lubricantes"
+            className="group relative h-45 md:h-87.5 overflow-hidden rounded-2xl md:rounded-[2.5rem] bg-linear-to-br from-blue-600/20 via-cyan-600/20 to-blue-800/20 border border-white/10 hover:border-cyan-500/50 transition-all duration-500 active:scale-[0.98] md:col-span-1 col-span-1"
+          >
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(6,182,212,0.15),transparent_70%)]" />
+            <div className="relative h-full p-5 md:p-10 flex flex-col justify-between">
+              <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-cyan-500/20 flex items-center justify-center border border-cyan-500/30 group-hover:scale-110 transition-transform">
+                <Droplets className="w-6 h-6 md:w-8 md:h-8 text-cyan-400" />
+              </div>
+              <div>
+                <h3 className="text-2xl md:text-4xl font-black text-white italic uppercase mb-1 md:mb-2">
+                  Lubricantes
+                </h3>
+                <p className="text-gray-400 text-xs md:text-sm">
+                  Suavidad premium
+                </p>
+              </div>
+            </div>
+          </Link>
+
+        </div>
       </section>
+
+      <RecentlyViewedSection />
 
       {/* SECTION 2: BENEFFITS (Minimalist & Luxury) */}
       <section className="py-16 md:py-24 bg-black border-y border-white/5">
@@ -106,20 +171,27 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* SECTION 3: FEATURED PRODUCTS */}
-      <section className="py-32 bg-[#050505]">
+      <section className="py-16 md:py-32 bg-[#050505]">
         <div className="container mx-auto px-4">
-          <div className="flex justify-between items-end mb-16">
-            <div>
-              <span className="text-brand-pink font-black text-xs tracking-[0.3em] uppercase">Recién llegados</span>
-              <h2 className="text-5xl font-black text-white italic uppercase tracking-tighter mt-2">Nuevas Joyas</h2>
-            </div>
-            <Link href="/products" className="text-gray-500 hover:text-white font-bold text-xs uppercase tracking-widest border-b border-gray-800 pb-2 transition-colors">
-              Ver todo el catálogo
+          {/* Header centrado y bonito */}
+          <div className="text-center mb-10 md:mb-16">
+            <span className="text-brand-pink font-black text-xs tracking-[0.3em] uppercase inline-block mb-4">
+              Recién llegados
+            </span>
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-black text-white italic uppercase tracking-tighter mb-6 md:mb-8">
+              Nuevas <span className="text-brand-pink">Joyas</span>
+            </h2>
+            <Link
+              href="/products"
+              className="inline-flex items-center gap-2 bg-brand-pink text-white px-8 py-3 md:px-10 md:py-4 rounded-full text-xs md:text-sm font-black uppercase tracking-widest hover:bg-pink-600 transition-all shadow-lg shadow-brand-pink/20 active:scale-95"
+            >
+              Ver Catálogo
+              <span className="text-lg">→</span>
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* Grid de productos */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
             {featured.map((product: Product) => (
               <ProductCard key={product._id} product={product} />
             ))}

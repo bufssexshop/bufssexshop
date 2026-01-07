@@ -4,6 +4,7 @@ import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Toaster } from "sonner";
 import { CartManager } from "@/components/cart/CartManager";
+import { Footer } from "@/components/layout/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,6 +30,7 @@ export default function RootLayout({
         </main>
 
         <CartManager />
+        <Footer />
         <Toaster position="bottom-right" richColors theme="dark" />
       </body>
     </html>
