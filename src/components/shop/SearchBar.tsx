@@ -65,13 +65,9 @@ export function SearchBar() {
         </button>
       </form>
 
-      {/* Historial de Búsquedas */}
       {showHistory && searches.length > 0 && (
         <>
-          {/* Debug backdrop - TEMPORAL */}
-          <div className="fixed inset-0 bg-black/20 z-9998" onClick={() => setShowHistory(false)} />
-
-          <div className="absolute top-[calc(100%+0.5rem)] right-0 w-80 bg-[#0a0a0a] border border-white/20 rounded-2xl shadow-2xl overflow-hidden z-9999">
+          <div className="absolute top-[calc(100%+0.5rem)] right-0 w-80 bg-[#0a0a0a] border border-white/20 rounded-2xl shadow-2xl overflow-hidden z-50">
           <div className="p-3 border-b border-white/5">
             <p className="text-xs font-black uppercase tracking-widest text-gray-500">
               Búsquedas recientes
@@ -79,29 +75,26 @@ export function SearchBar() {
           </div>
           <ul className="max-h-60 overflow-y-auto">
             {searches.map((query: string, index: number) => (
-              <li key={index}>
+              <li key={index} className="relative group">
                 <button
                   onClick={() => {
                     setSearchTerm(query);
                     handleSearch(query);
                   }}
-                  className="w-full px-4 py-3 flex items-center justify-between hover:bg-white/5 transition-colors group"
+                  className="w-full px-4 py-3 pr-10 flex items-center gap-3 hover:bg-white/5 transition-colors"
                 >
-                  <div className="flex items-center gap-3">
-                    <Clock size={14} className="text-gray-500" />
-                    <span className="text-sm text-gray-300 group-hover:text-white">
-                      {query}
-                    </span>
-                  </div>
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      removeSearch(query);
-                    }}
-                    className="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-red-500 transition-all"
-                  >
-                    <X size={14} />
-                  </button>
+                  <Clock size={14} className="text-gray-500" />
+                  <span className="text-sm text-gray-300 group-hover:text-white">
+                    {query}
+                  </span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => removeSearch(query)}
+                  aria-label={`Eliminar búsqueda "${query}"`}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 text-gray-500 hover:text-red-500 transition-all"
+                >
+                  <X size={14} />
                 </button>
               </li>
             ))}

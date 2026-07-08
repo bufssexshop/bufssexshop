@@ -37,16 +37,12 @@ export default function ProductDetailPage() {
           throw new Error('API_URL no configurada');
         }
 
-        console.log('Fetching product:', id, 'from:', API_URL);
-
         const res = await fetch(`${API_URL}/products/${id}`, {
           cache: 'no-store',
           headers: {
             'Content-Type': 'application/json',
           },
         });
-
-        console.log('Response status:', res.status);
 
         if (!res.ok) {
           if (res.status === 404) {
@@ -56,8 +52,6 @@ export default function ProductDetailPage() {
         }
 
         const data = await res.json();
-        console.log('Data received:', data);
-
         const productData = data.product || data;
 
         if (!productData) {
